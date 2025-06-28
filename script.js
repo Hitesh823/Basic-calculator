@@ -1,5 +1,5 @@
 const display = document.getElementById('display');
-const buttons = document.querySelectorAll('.btn');
+const buttons = document.querySelectorAll('.btn[data-value]');
 const clearBtn = document.getElementById('clear');
 const equalsBtn = document.getElementById('equals');
 const sqrtBtn = document.getElementById('sqrt');
@@ -12,28 +12,27 @@ let currentInput = '';
 let resultDisplayed = false;
 let memory = 0;
 
-// Handle Button Clicks
+// Handle Button Clicks for numbers/operators/decimal/%
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value');
 
-        if (button.classList.contains('operator') || !isNaN(value) || value === '.' || value === '%') {
-            if (resultDisplayed) {
-                currentInput = '';
-                resultDisplayed = false;
-            }
-            currentInput += value;
-            display.innerText = currentInput;
+        if (resultDisplayed) {
+            currentInput = '';
+            resultDisplayed = false;
         }
+
+        currentInput += value;
+        display.innerText = currentInput;
     });
 });
 
-// Equals Button
+// Equals Calculation
 equalsBtn.addEventListener('click', () => {
     try {
         if (currentInput.trim() === '') return;
 
-        // Replace percentage operator with actual calculation
+        // Handle percentage
         let expression = currentInput.replace(/%/g, '/100');
 
         const result = eval(expression);
@@ -50,7 +49,7 @@ equalsBtn.addEventListener('click', () => {
     }
 });
 
-// Square Root Button
+// Square Root
 sqrtBtn.addEventListener('click', () => {
     try {
         const number = parseFloat(currentInput);
@@ -91,7 +90,7 @@ mcBtn.addEventListener('click', () => {
     memory = 0;
 });
 
-// Keyboard Input Handling
+// Keyboard Support
 document.addEventListener('keydown', (e) => {
     const allowedKeys = '0123456789+-*/.%';
     

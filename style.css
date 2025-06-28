@@ -38,6 +38,13 @@ body {
     gap: 10px;
 }
 
+.memory-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
 .btn {
     padding: 20px;
     font-size: 1.2em;
@@ -60,26 +67,18 @@ body {
 
 .equals {
     background: #34c759;
-    grid-column: span 2;
 }
 
 .clear {
     background: #ff3b30;
-    grid-column: span 4;
-}
-.memory-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.memory {
-    background: #007aff;
-    color: white;
 }
 
 .function {
     background: #ffcc00;
     color: black;
+}
+
+.memory {
+    background: #007aff;
+    color: white;
 }
